@@ -1,0 +1,82 @@
+body {
+    font-family: sans-serif; /* Chọn font chữ */
+    background-color: #f0f0f0; /* Màu nền */
+    display: flex; /* Sử dụng flexbox để căn giữa */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    min-height: 100vh; /* Chiều cao tối thiểu bằng chiều cao màn hình */
+    margin: 0; /* Xóa margin mặc định của body */
+    padding: 20px; /* Thêm padding xung quanh nội dung */
+    box-sizing: border-box; /* Tính cả padding vào kích thước */
+}
+
+.profile-card {
+    background-color: #fff; /* Màu nền thẻ */
+    border-radius: 10px; /* Bo góc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    padding: 30px; /* Khoảng đệm bên trong */
+    text-align: center; /* Căn giữa văn bản và ảnh */
+    max-width: 400px; /* Chiều rộng tối đa của thẻ */
+    width: 100%; /* Chiều rộng thẻ chiếm 100% của vùng chứa (tối đa 400px) */
+}
+
+.profile-img {
+    width: 150px; /* Chiều rộng ảnh */
+    height: 150px; /* Chiều cao ảnh */
+    border-radius: 50%; /* Biến ảnh thành hình tròn */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo khi là hình tròn */
+    margin-bottom: 20px; /* Khoảng cách dưới ảnh */
+    border: 4px solid #4CAF50; /* Viền xung quanh ảnh */
+}
+
+h1 {
+    color: #333; /* Màu tiêu đề */
+    margin-bottom: 10px; /* Khoảng cách dưới h1 */
+}
+
+.title {
+    color: #555; /* Màu văn bản phụ */
+    font-size: 1em; /* Kích thước font */
+    margin-bottom: 15px; /* Khoảng cách dưới title */
+}
+
+p {
+    color: #666; /* Màu văn bản */
+    line-height: 1.6; /* Chiều cao dòng */
+    margin-bottom: 20px; /* Khoảng cách dưới đoạn văn */
+}
+
+h2 {
+    color: #333;
+    margin-top: 30px; /* Khoảng cách trên h2 */
+    margin-bottom: 15px; /* Khoảng cách dưới h2 */
+    border-top: 1px solid #eee; /* Đường kẻ phía trên */
+    padding-top: 20px; /* Khoảng đệm phía trên đường kẻ */
+}
+
+ul {
+    list-style: none; /* Xóa dấu chấm mặc định của list */
+    padding: 0; /* Xóa padding mặc định của list */
+    margin: 0; /* Xóa margin mặc định của list */
+}
+
+li {
+    margin-bottom: 10px; /* Khoảng cách giữa các mục list */
+}
+
+a {
+    color: #007bff; /* Màu liên kết */
+    text-decoration: none; /* Xóa gạch chân mặc định của liên kết */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+}
+
+a:hover {
+    color: #0056b3; /* Màu liên kết khi di chuột qua */
+    text-decoration: underline; /* Gạch chân khi di chuột qua */
+}
+
+footer {
+    margin-top: 30px; /* Khoảng cách trên footer */
+    color: #777; /* Màu văn bản footer */
+    font-size: 0.9em; /* Kích thước font nhỏ hơn */
+}
