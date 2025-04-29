@@ -1,0 +1,21 @@
+{
+    "name": "Hồ Sơ Của Tôi PWA",
+    "short_name": "Hồ Sơ",
+    "description": "Thẻ hồ sơ cá nhân đơn giản dưới dạng PWA.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f0f0f0",
+    "theme_color": "#4CAF50",
+    "icons": [
+        {
+            "src": "./icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
