@@ -18,26 +18,64 @@
             <li><a href="#">LinkedIn</a></li>
             <li><a href="#">GitHub</a></li>
         </ul>
+
+        <button id="showNotificationButton">Hiển thị Thông báo</button>
     </div>
 
     <footer>
         <p>&copy; 2023 Tên Của Bạn. Tất cả quyền được bảo lưu.</p>
     </footer>
-</body>
-<script>
-    // Kiểm tra xem trình duyệt có hỗ trợ Service Worker không
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('service-worker.js')
-                .then(function(registration) {
-                    // Đăng ký thành công
-                    console.log('Service Worker: Registration successful with scope:', registration.scope);
-                })
-                .catch(function(err) {
-                    // Đăng ký thất bại
-                    console.log('Service Worker: Registration failed:', err);
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('Service Worker: Registration successful with scope:', registration.scope);
+                    })
+                    .catch(function(err) {
+                        console.log('Service Worker: Registration failed:', err);
+                    });
+            });
+        }
+    </script>
+
+    <script>
+        // Lấy nút bấm theo ID
+        const notifButton = document.getElementById('showNotificationButton');
+
+        // Thêm sự kiện click cho nút
+        notifButton.addEventListener('click', function() {
+            // 1. Yêu cầu quyền hiển thị thông báo
+            if (Notification.permission === 'default') {
+                 Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        // Quyền đã được cấp, hiển thị thông báo
+                        showSimpleNotification();
+                    } else {
+                        console.log('Người dùng từ chối cấp quyền thông báo');
+                    }
                 });
+            } else if (Notification.permission === 'granted') {
+                // Quyền đã được cấp trước đó, hiển thị thông báo luôn
+                 showSimpleNotification();
+            } else {
+                 // Quyền đã bị từ chối vĩnh viễn
+                 console.log('Quyền thông báo đã bị từ chối. Vui lòng cấp quyền trong cài đặt trình duyệt.');
+            }
         });
-    }
-</script>
+
+        // Hàm hiển thị thông báo đơn giản
+        function showSimpleNotification() {
+            // Kiểm tra lại lần nữa cho chắc
+            if (Notification.permission === 'granted') {
+                new Notification('Thông báo từ Hồ Sơ của bạn', {
+                    body: 'Đây là một thông báo đơn giản được kích hoạt từ nút bấm!',
+                    icon: 'icon-512x512.png' // Thêm một icon nhỏ cho thông báo
+                    // Bạn có thể thêm các tùy chọn khác như image, badge, vibrate, actions...
+                });
+            }
+        }
+    </script>
+</body>
 </html>
