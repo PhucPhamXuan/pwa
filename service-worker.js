@@ -1,10 +1,9 @@
 const CACHE_NAME = 'profile-card-cache-v1'; // Tên cache, thay đổi khi cập nhật cache
-const urlsToCache = [
-    '/', // Trang index
-    '/index.html',
-    '/style.css',
-    // '/icons/icon-192x192.png', // Uncomment nếu bạn có file icon
-    // '/icons/icon-512x512.png', // Uncomment nếu bạn có file icon
+const urlsToCache = 
+    'index.html',
+    'style.css',
+    'icon-192x192.png', // Uncomment nếu bạn có file icon
+    'icon-512x512.png', // Uncomment nếu bạn có file icon
     // Thêm các file khác mà bạn muốn cache (ví dụ: ảnh profile nếu có)
 ];
 
