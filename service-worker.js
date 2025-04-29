@@ -1,11 +1,16 @@
 const CACHE_NAME = 'profile-card-cache-v1'; // Tên cache, thay đổi khi cập nhật cache
-const urlsToCache = 
+const urlsToCache = [ // <-- Thêm dấu ngoặc vuông mở '[' ở đây
+    '/', // Cache trang gốc
     'index.html',
     'style.css',
+    // Đảm bảo đường dẫn tới icon là đúng.
+    // Nếu icon ở thư mục gốc cùng index.html, đường dẫn là 'icon-192x192.png'.
+    // Nếu icon ở thư mục 'icons' trong thư mục gốc, đường dẫn là '/icons/icon-192x192.png'.
     'icon-192x192.png', // Uncomment nếu bạn có file icon
     'icon-512x512.png', // Uncomment nếu bạn có file icon
     // Thêm các file khác mà bạn muốn cache (ví dụ: ảnh profile nếu có)
-];
+    // Vd: 'https://via.placeholder.com/150' nếu bạn muốn cache ảnh placeholder
+]; // <-- Dấu ngoặc vuông đóng ']' đã đúng vị trí
 
 // Lắng nghe sự kiện install (lần đầu service worker được cài đặt)
 self.addEventListener('install', function(event) {
@@ -14,7 +19,12 @@ self.addEventListener('install', function(event) {
         caches.open(CACHE_NAME)
             .then(function(cache) {
                 console.log('Service Worker: Caching app shell');
-                return cache.addAll(urlsToCache); // Thêm các file vào cache
+                return cache.addAll(urlsToCache)
+                    .catch(function(error) { // Bắt lỗi nếu không cache được file nào đó
+                        console.error('Service Worker: Failed to cache some URLs:', error);
+                        // Bạn có thể chọn fail toàn bộ install hoặc bỏ qua lỗi
+                        // throw error; // Nếu muốn cài đặt thất bại khi có lỗi
+                    });
             })
     );
 });
@@ -38,6 +48,11 @@ self.addEventListener('activate', function(event) {
 
 // Lắng nghe sự kiện fetch (mỗi khi trình duyệt gửi yêu cầu mạng)
 self.addEventListener('fetch', function(event) {
+    // Bỏ qua các yêu cầu không phải http/https (ví dụ: chrome-extension://)
+    if (!event.request.url.startsWith('http')) {
+        return;
+    }
+
     // Phản hồi bằng tài nguyên trong cache nếu có
     event.respondWith(
         caches.match(event.request)
