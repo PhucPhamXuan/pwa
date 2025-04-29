@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hồ Sơ Cá Nhân</title>
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="style.css"> </head>
 <body>
     <div class="profile-card">
@@ -24,4 +25,20 @@
         <p>&copy; 2023 Tên Của Bạn. Tất cả quyền được bảo lưu.</p>
     </footer>
 </body>
+<script>
+    // Kiểm tra xem trình duyệt có hỗ trợ Service Worker không
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function(registration) {
+                    // Đăng ký thành công
+                    console.log('Service Worker: Registration successful with scope:', registration.scope);
+                })
+                .catch(function(err) {
+                    // Đăng ký thất bại
+                    console.log('Service Worker: Registration failed:', err);
+                });
+        });
+    }
+</script>
 </html>
