@@ -2,7 +2,7 @@
     "name": "Hồ Sơ Của Tôi PWA",
     "short_name": "Hồ Sơ",
     "description": "Thẻ hồ sơ cá nhân đơn giản dưới dạng PWA.",
-    "start_url": "/",
+    "start_url": "https://phucphamxuan.github.io/pwa/",
     "display": "standalone",
     "background_color": "#f0f0f0",
     "theme_color": "#4CAF50",
